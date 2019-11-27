@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const commentsURL = `https://randopic.herokuapp.com/comments/`
 
+  let deleteCommentBtn = document.createElement("button")
+    deleteCommentBtn.innerText = "X"
+
   function getComments(data, imageObj){
     data.comments.forEach(function(comment) {
       let newComment = {
@@ -66,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       commentLi.dataset.image_id = comment.image_id
       commentLi.dataset.created_at = comment.created_at
       commentLi.dataset.updated_at = comment.updated_at
+      // commentLi.append(deleteCommentBtn)
       commentUl.append(commentLi)
     }
   }
@@ -73,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function eventListeners(){
     likeBtn.addEventListener("click", increaseLikes)
     commentForm.addEventListener("submit", submitComment)
+    // body.addEventListener("click", deleteComment)
   }
 
   function increaseLikes(e){
@@ -100,10 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let commentLi = document.createElement("li")
     commentLi.innerText = comment
     commentUl.append(commentLi)
-    submitCommentDB(e, comment)
+    submitCommentDB(e, comment, commentLi)
   }
 
-  function submitCommentDB(e, comment){
+  function submitCommentDB(e, comment, commentLi){
     let imageId = e.target.dataset.id
     fetch(`https://randopic.herokuapp.com/comments`, {
       method: "POST",
@@ -116,6 +121,42 @@ document.addEventListener('DOMContentLoaded', () => {
         "content": comment
       })
     })
+    .then(function(resp){
+      return resp.json()
+    })
+    .then(function(data){
+      console.log(data)
+      commentLi.append(deleteCommentBtn)
+      deleteCommentBtn.dataset.id = data.id
+      deleteCommentBtn.dataset.image_id = data.image_id
+      deleteCommentBtn.addEventListener("click", deleteCommentDB)
+    })
+    // .then(function(){
+    //   let newComment = document.querySelector("li[data-id][data-image_id]:last-child")
+    //   commentLi.append(deleteCommentBtn)
+    //   debugger
+    //   deleteCommentBtn.dataset.id = newComment.dataset.id
+    //   deleteCommentBtn.dataset.image_id = newComment.datsaet.image_id
+    //   deleteCommentBtn.addEventListener("click", deleteCommentDB)
+    // })
+  }
+
+  function deleteCommentDB(e){
+    let id = e.target.dataset.id
+    let image_id = e.target.dataset.image_id
+    fetch(`https://randopic.herokuapp.com/comments/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        // "image_id": image_id,
+        "id": id
+      })
+    })
+    // .then(function(resp){ return resp.json() })
+    // .then(function(data){ console.log(data) })
   }
 
   fetchImage()
