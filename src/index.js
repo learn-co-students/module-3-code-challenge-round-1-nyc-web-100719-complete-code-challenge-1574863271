@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let newComment = addNewComment(e)
       persistNewComment(newComment)
+      e.target[0].value = ""
       e.preventDefault()
     }
   })
