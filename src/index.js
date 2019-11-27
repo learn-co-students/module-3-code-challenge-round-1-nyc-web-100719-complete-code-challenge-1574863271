@@ -157,6 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     // .then(function(resp){ return resp.json() })
     // .then(function(data){ console.log(data) })
+    .then(function(){
+      comment = document.querySelector("ul#comments").lastChild
+      comment.remove()
+    })
   }
 
   fetchImage()
