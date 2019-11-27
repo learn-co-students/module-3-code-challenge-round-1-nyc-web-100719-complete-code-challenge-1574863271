@@ -41,6 +41,7 @@ A user of your app must be able to do the following things:
 
 - As a user, when I refresh the page, any comments or likes I have added should still be there. When a user adds a like or a comment, make sure their changes are sent to the backend API.
 
+- 
 ## Functionality demo
 
 ![Example](./animated_challenge_example.gif "Example Functionality")
@@ -103,7 +104,6 @@ Clicking the 'Like' button should increase the number of likes shown on the page
 
 A user can like the same picture multiple times.
 
----
 
 ## Step 3 - Like Feature (Backend)
 
