@@ -58,6 +58,7 @@ When the page loads, you will need to make a request to the API to get the data 
 #### API Docs
 
 #### Endpoint to show an individual Image
+X 
 
 Visit https://randopic.herokuapp.com/ in your web browser. The backend will assign you your very own `image_id`.  **THIS IS YOUR ASSIGNED IMAGE. This prevents your classmates from editing your images and vice versa**.
 
@@ -65,6 +66,10 @@ Visit https://randopic.herokuapp.com/ in your web browser. The backend will assi
 
 ```js
 GET 'https://randopic.herokuapp.com/images/:id'
+
+4047
+https://randopic.herokuapp.com/images/4047
+
 ```
 
 ```json
@@ -86,6 +91,7 @@ Example Response:
 }
 ```
 
+X 
 Use the data from the API response to change what's currently on the page (take a look at the already provided `index.html`). You will need to add/update:
 
 - the image url
@@ -97,6 +103,7 @@ Use the data from the API response to change what's currently on the page (take 
 
 ## Step 2 - Like Feature (Frontend)
 
+X 
 The next feature to approach is the functionality to add likes to a picture. First, get this working in the browser only without worrying about persistence.
 
 Clicking the 'Like' button should increase the number of likes shown on the page by one.
@@ -106,7 +113,7 @@ A user can like the same picture multiple times.
 ---
 
 ## Step 3 - Like Feature (Backend)
-
+X 
 This app will use what is called _optimistic rendering_. This means the DOM will be updated *before* the changes are added to the database. When a user clicks the 'Like' button we will immediately update the DOM. Next, your job is to make a POST request to persist the new Like in the backend database.
 
 #### API Docs
@@ -147,6 +154,7 @@ To test your code, make sure the number of likes increments when you click the l
 ---
 
 ## Step 4 - Comment Feature (Frontend)
+
 
 The next feature to approach is the functionality to add comments to a picture. First, get this working in the browser only, without worrying about persistence.
 
